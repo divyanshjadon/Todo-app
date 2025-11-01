@@ -1,0 +1,19 @@
+import React, { useState } from 'react';
+
+export default function TodoForm({ onAdd }) {
+  const [title, setTitle] = useState('');
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (!title.trim()) return;
+    onAdd(title.trim());
+    setTitle('');
+  };
+
+  return (
+    <form className="todo-form" onSubmit={submit}>
+      <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Add new todo..." />
+      <button type="submit">Add</button>
+    </form>
+  );
+}
